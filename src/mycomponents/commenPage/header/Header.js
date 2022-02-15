@@ -94,8 +94,7 @@ const Header = () => {
                       <button
                         class="btn btn-outline-success btn_border"
                         type="submit"
-                      >
-                        <i class="fa fa-search" aria-hidden="true"></i> Search
+                      ><i class="fa fa-search" aria-hidden="true"></i>Search
                       </button>
                     </form>
                   </div>

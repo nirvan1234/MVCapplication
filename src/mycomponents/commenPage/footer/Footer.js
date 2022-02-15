@@ -99,7 +99,7 @@ const Footer = () => {
                       </li>
                       <li>
                         <i class="fa fa-angle-right"></i>
-                        <a href="">Pay Rent</a>
+                        <a href="/#">Pay Rent</a>
                       </li>
                     </ul>
                   </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 import home1png from "../../images/home1.svg";
 import firstWave from "../../images/wave1.png";
@@ -12,6 +12,10 @@ import whyChooseUs from "../../images/whyChooceUs.svg";
 import user1 from "../../images/user1.jpg";
 import user2 from "../../images/user2.jpg";
 import "./home.css";
+import RoomDataCard from "./RoomDataCard"
+// floating button
+
+import { Container, Button, } from "react-floating-action-button";
 
 const Home = () => {
   const cardData = [
@@ -52,12 +56,39 @@ const Home = () => {
         " Having consistent wifi throughout an entire hostel building isnt as critical as having basic security features throughout an entire hostel building, but ",
     },
   ];
+  const [visible, setVisible] = useState(false)
+  
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 100){
+      setVisible(true)
+    } 
+    else if (scrolled <= 100){
+      setVisible(false)
+    }
+  };
+  
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth', 
+
+    });
+  };
+  
+  window.addEventListener('scroll', toggleVisible);
+  
+
+
+
+
   return (
     <>
+      {/* ......................banneer1..................... */}
       <section id="banner1">
         <div className=" container">
-          <div className="row">
-            <div className="col-md-6 order-md-2">
+          <div className="row py-3">
+            <div className="col-md-6 order-md-2 d-flex">
               <img
                 src={home1png}
                 alt=""
@@ -67,7 +98,7 @@ const Home = () => {
             </div>
             <div className="col-md-6 order-md-1">
               <p className="promo_title">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Find Room|Flats| <span className=" text-warning"> Hostel</span> |PG in easiest  <span className=" text-warning"> way</span>
               </p>
               <p>
                 {" "}
@@ -80,20 +111,92 @@ const Home = () => {
                 voluptatum cumque asperiores, distinctio impedit voluptatem
                 fugit voluptas sed illum reiciendis!
               </p>
-              <a href="/">
-                {" "}
-                <img
-                  src="https://previews.123rf.com/images/urfandadashov/urfandadashov1809/urfandadashov180902232/109316349-location-vector-icon-isolated-on-transparent-background-location-logo-concept.jpg"
-                  className="location_icon"
-                  alt=""
-                  srcset=""
-                />{" "}
-                Search your room
-              </a>
-              <div className="">
-                <button type="button" class="btn btn-primary p-3">
-                  Search it now
-                </button>
+              <div class="row">
+                <div class="col-md-12 mb-4">
+                  <select class="select w-100 px-2 py-3 rounded-2">
+                    <option>What do you want to search ?</option>
+                    <option value="2">Room</option>
+                    <option value="3">Flat</option>
+                    <option value="4">Hostel</option>
+                    <option value="4">PG</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <select class="select w-100 px-2 py-3 rounded-2">
+                    <option value="1">Boys</option>
+                    <option value="2">Girls</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <select class="select w-100 px-2 py-3 rounded-2">
+                    <option value="1">Select Location</option>
+                    <option value="1">Old Palasia</option>
+
+                    <option value="3">Bhawarkua Vishnupuri</option>
+
+                    <option value="4">Bhawarkua Tower Chouraha</option>
+
+                    <option value="6">Bhawarkua Bholaram Gate</option>
+
+                    <option value="7">Saket Square</option>
+
+                    <option value="9">Heera Nagar</option>
+
+                    <option value="10">Nipania</option>
+
+                    <option value="11">Manish Baug</option>
+
+                    <option value="13">VijayNagar SCHEME NO. 54</option>
+
+                    <option value="14">Vijay Nagar</option>
+
+                    <option value="15">Scheme No 78</option>
+
+                    <option value="16">GPO Parsi mohalla</option>
+
+                    <option value="20">Mahalakshaminagar </option>
+
+                    <option value="21">New Palasia</option>
+
+                    <option value="22">Khajrana</option>
+
+                    <option value="23">LIG</option>
+
+                    <option value="24">Bapat Square</option>
+
+                    <option value="25">Tilak Nagar</option>
+
+                    <option value="26">Bhawarkua</option>
+
+                    <option value="27">Scheme no. 74, Vijay Nagar</option>
+
+                    <option value="28">Sukhlia</option>
+
+                    <option value="29">Geeta Bhawan</option>
+
+                    <option value="30">New Palasia</option>
+
+                    <option value="31">Malviya Nagar</option>
+
+                    <option value="32">Patnipura</option>
+
+                    <option value="33">Nanda Nagar</option>
+
+                    <option value="34">Bajrang Nagar</option>
+
+                    <option value="35">Shalimar Township</option>
+
+                    <option value="36">Scheme no. 78, Vijay Nagar</option>
+
+                    <option value="37">Dewas Naka</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6  d-grid ">
+                  <button type="button" class="btn btn-success py-3 px-3">
+                    Search <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -101,18 +204,16 @@ const Home = () => {
         <img src={firstWave} alt="" srcset="" className="firstWave" />
       </section>
 
-      {/* { </div>
-              <div className="col-lg-4 shadow mb-4">
-                <img src={sanitizer} alt="" className="img-fluid service_img" />
-                <h4>Home Sanitisation</h4>
-                <p>
-                  We offers range of sanitation services for home which
-                  including proactive measures for surface and spatial
-                  disinfection. Check out now!
-                </p>
-              </div>} */}
+
+{/* ......................banneer2..................... */}
+<section id="CardBannar" > 
+<div style={{ position : "relative"}}>
+<RoomDataCard/>
+</div>
+
+</section>
       {/* ......................banneer2..................... */}
-      <div className=" container">
+      {/* <div className="container"> */}
         <section id="banner2">
           <div className="container ">
             <div className="row text-center">
@@ -150,7 +251,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-      </div>
+      {/* </div> */}
 
       {/* ..................banner3.............. */}
       <section className="banner3">
@@ -169,21 +270,34 @@ const Home = () => {
               <h1 className="mt-4" style={{ paddingLeft: "30px" }}>
                 Why we are different ?
               </h1>
-              <ul>
-                <li>we are believe in strong relationship and bond</li>
+              <ul style={{ listStyle: "none" }}>
                 <li>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  architecto
+                  <i class="fas fa-chevron-circle-right"></i> we are believe in
+                  strong relationship and bond
                 </li>
                 <li>
-                  nostrum nulla quae praesentium quod autem deleniti, quas culpa
-                  perferendis sit officia distinctio.
+                  <i class="fas fa-chevron-circle-right"></i> Lorem ipsum dolor
+                  sit amet, consectetur adipisicing elit. architecto
                 </li>
-                <li>we are believe in strong relationship and bond</li>
                 <li>
-                  Labore nesciunt eligendi dolore ipsa magnam est voluptatem
+                  <i class="fas fa-chevron-circle-right"></i> nostrum nulla quae
+                  praesentium quod autem deleniti, quas culpa perferendis sit
+                  officia distinctio.
                 </li>
-                <li>we are believe in strong relationship and bond</li>
+                <li>
+                  {" "}
+                  <i class="fas fa-chevron-circle-right"></i> we are believe in
+                  strong relationship and bond
+                </li>
+                <li>
+                  <i class="fas fa-chevron-circle-right"></i> Labore nesciunt
+                  eligendi dolore ipsa magnam est voluptatem
+                </li>
+                <li>
+                  {" "}
+                  <i class="fas fa-chevron-circle-right"></i> we are believe in
+                  strong relationship and bond
+                </li>
               </ul>
             </div>
           </div>
@@ -225,8 +339,19 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* npm i react-floating-action-button */}
+      <div style={{display: visible ? 'inline' : 'none'}}>
+      <Container >
+        <Button tooltip="PageUp" icon="fas fa-arrow-up"  onClick={scrollToTop}    />
+      </Container>
+      </div>
+  
     </>
   );
 };
 
+
 export default Home;
+
+
